@@ -1,0 +1,9 @@
+---
+- name: Install APT packages
+  apt: name=nodejs update_cache=yes
+
+- name: Install n
+  npm: name=n state=present global=yes
+
+- name: Install latest stable NodeJS
+  shell: n {{ nodejs_version }}
