@@ -2,7 +2,7 @@
 galaxy_info:
   author: Incubatio
   description: ansible role to add a user, a group and local-machine public key to remote authorized_keys
-  min_ansible_version: 1.9.3
+  min_ansible_version: 2.0
   platforms:
     - name: Ubuntu
       versions:

@@ -1,9 +1,17 @@
 ---
-- name: Install APT packages
-  apt: name=nodejs update_cache=yes
 
-- name: Install n
-  npm: name=n state=present global=yes
+- name: Check if node and n are installed.
+  command: which n
+  changed_when: false
+  failed_when: false
+  register: n_installed
 
-- name: Install latest stable NodeJS
-  shell: n {{ nodejs_version }}
+
+- block:
+  - name: Install node
+    apt: name=npm update_cache=yes
+  - name: Install n
+    npm: name=n state=present global=yes
+  - name: Switch node_version
+    shell: n {{ nodejs_version }}
+  when: n_installed|failed
